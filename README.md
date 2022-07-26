@@ -17,3 +17,6 @@ Summary: The Java piscine is developed in order to overcome the barrier to entry
     Multi-threading.
 - **Day04**  
     Creating archives and a bit of image processing.
+- **Day05**  
+    SQL and JDBC. Implementing a very easy data handling logic for a chat app.
+
