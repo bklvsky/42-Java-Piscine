@@ -341,3 +341,18 @@ is guaranteed, except for sequential ordering of classes when populating the tim
 Example of program operation:
 
 
+```
+John  
+Mike  
+.  
+2 MO  
+4 WE  
+.
+Mike 2 28 NOT_HERE  
+John 4 9 HERE  
+Mike 4 9 HERE  
+.  
+          4:00 WE  2|2:00 MO  7|4:00 WE  9|2:00 MO 14|4:00 WE 16|2:00 MO 21|4:00 WE 23|2:00 MO 28|4:00 WE 30|  
+      John          |          |         1|          |          |          |          |          |          |  
+      Mike          |          |         1|          |          |          |          |        -1|          |  
+```
