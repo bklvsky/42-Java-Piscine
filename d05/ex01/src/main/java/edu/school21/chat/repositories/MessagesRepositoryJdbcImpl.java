@@ -41,8 +41,10 @@ public class MessagesRepositoryJdbcImpl implements MessagesRepository{
 		Connection con = ds.getConnection();
 		Statement statement = con.createStatement();
 		ResultSet result = statement.executeQuery(QUERY_STRING + id);
-		result.next();
 
+		if (!result.next()) {
+			return Optional.empty();
+		}
 
 		message = Optional.of(
 						new Message(

@@ -44,11 +44,11 @@ public class Message {
 	@Override
 	public String toString() {
 		return (
-				"Message: {id=" + id
-						+ ", author='" + author + "'"
-						+ ", room='" + room + "'"
-						+ ", text=" + text
-						+ ", dateTime=" + timestamp
+				"Message: {\nid=" + id
+						+ ",\nauthor='" + author + "'"
+						+ ",\nroom='" + room + "'"
+						+ ",\ntext=" + text
+						+ ",\ndateTime=" + timestamp
 						+ "}"
 		);
 	}
@@ -72,8 +72,5 @@ public class Message {
 		return timestamp;
 	}
 
-	public void setId(long id) {
-		this.id = id;
-	}
-
+	public void setId(long id) { this.id = id; }
 }

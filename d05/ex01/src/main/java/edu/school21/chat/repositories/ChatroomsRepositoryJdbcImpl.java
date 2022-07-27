@@ -33,7 +33,9 @@ public class ChatroomsRepositoryJdbcImpl implements ChatroomsRepository {
 		Connection con = ds.getConnection();
 		Statement statement = con.createStatement();
 		ResultSet result = statement.executeQuery(QUERY_STRING + id);
-		result.next();
+		if (!result.next()) {
+			return Optional.empty();
+		}
 		chatroom = Optional.of(
 				new Chatroom(
 						result.getLong("id"),

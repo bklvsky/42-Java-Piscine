@@ -20,9 +20,12 @@ import java.util.Optional;
 import java.util.Scanner;
 
 public class Program {
-
-	private static final String SCHEMA_SQL = "/resources/schema.sql";
 	private static final String DATA_SQL = "/resources/data.sql";
+
+	private static final String USER_NAME = "chatadmin";
+	private static final String DB_NAME = "chat";
+
+	private static final String SQL_PASSWORD = "123";
 
 	private static void runQueriesFromFile
 			(HikariDataSource ds,
@@ -40,8 +43,6 @@ public class Program {
 
 	private static void initDB(HikariDataSource ds) throws FileNotFoundException, URISyntaxException
 	{
-		File schema = new File(System.getProperty("user.dir") + "/src/main/" + SCHEMA_SQL);
-		runQueriesFromFile(ds, schema);
 		File data = new File(System.getProperty("user.dir") + "/src/main/" + DATA_SQL);
 		runQueriesFromFile(ds, data);
 	}
@@ -89,20 +90,24 @@ public class Program {
 	public static void main(String[] args) {
 		long id;
 		HikariDataSource ds = new HikariDataSource();
-		ds.setJdbcUrl("jdbc:postgresql://localhost:5432/ex01");
-		ds.setUsername("skach");
-		ds.setPassword("123");
+		ds.setJdbcUrl("jdbc:postgresql://localhost:5432/" + DB_NAME);
+		ds.setUsername(USER_NAME);
+		ds.setPassword(SQL_PASSWORD);
 
 		MessagesRepository msgRepo = new MessagesRepositoryJdbcImpl(ds);
 
 		try (Scanner sc = new Scanner(System.in)) {
 			initDB(ds);
+			String text;
 			User author = getUser(ds, sc);
 			Chatroom room = getChatroom(ds, sc);
+
 			System.out.println("");
 			System.out.println("Enter a message text");
 			System.out.print("-> ");
-			String text = sc.next();
+			sc.nextLine();
+			text = sc.nextLine();
+
 			Message message = new Message(null, author, room, text, new Timestamp(new Date().getTime()));
 			msgRepo.save(message);
 			System.out.println("Message was successfully saved!");
