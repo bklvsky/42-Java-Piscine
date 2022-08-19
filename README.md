@@ -1,7 +1,5 @@
 # 42 Java Piscine
 
-## Management structures and arrays
-
 Summary: The Java piscine is developed in order to overcome the barrier to entry to the professional field. All days of the piscine are focused on learning and understanding the Java infrastructure and basic technologies which are used in enterprise development. 
 
 ## Contents
